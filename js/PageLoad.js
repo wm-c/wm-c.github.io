@@ -33,8 +33,14 @@ $('link[data-src]').each(function(){
 			div.appendChild(title);
 			div.appendChild(text);
 
+			// Creates anchor
+			var anchor = document.createElement("a");
+			anchor.href = data[2];
+
+			anchor.appendChild(div);
+
 			// Adds div to posts lists 
-			document.getElementById("posts").appendChild(div);
+			document.getElementById("posts").appendChild(anchor);
 			
 
 		});
