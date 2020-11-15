@@ -1,0 +1,18 @@
+/*
+Title:Hello World
+Text:The story of making a website and poorly making a markup Language
+Date:18/10/2020
+*/
+
+Header:
+Overly Engineering a Website
+
+
+
+Text:
+I just made my first site and i'll add more post later but I can do this [crazy text]{color: pink;}
+
+
+
+
+

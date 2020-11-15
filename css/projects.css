@@ -1,0 +1,10 @@
+#titleSpan{
+	font-size: small;
+	display: flexbox;
+	/* justify-content: center; */
+	padding-top: 50px;
+}
+
+h1{
+	justify-content: center;
+}
