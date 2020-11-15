@@ -1,0 +1,15 @@
+
+
+.injected{
+	padding-top: 5%;
+	width: 100%;
+	display: flexbox;
+	justify-content: center;
+	text-align: center;
+
+}
+
+#header{
+	width: auto;
+	display: block;
+}

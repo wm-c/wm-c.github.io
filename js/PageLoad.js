@@ -9,11 +9,12 @@ $('link[data-src]').each(function(){
 	// Gets file data
     $.get(src, function(fileContent){
 		// Splits each line
+		fileContent = fileContent.slice(0, -1)
 		words = fileContent.split("\n");
 		words.forEach(element => {
 
 			// Splits data at ,
-			data = element.split(",");
+			data = element.split("::");
 
 			// Creates div that gets data added to it
 			var div = document.createElement("div");
