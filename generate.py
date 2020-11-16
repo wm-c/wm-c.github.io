@@ -36,10 +36,11 @@ def addPost(file: str, title: str, description: str, fileGenerationSpot = None) 
 	with open(file, "a") as posts:
 		posts.write(f"{title}:: {description}:: {fileGenerationSpot}\n")
 
-
+# fix multi line bug
 def styleText(stylableText: str) -> str:
 	stylable = re.findall("\[(.*)\}", stylableText)
 
+	
 	for customStyle in stylable:
 
 		splitPosition = customStyle.find("]")
@@ -48,7 +49,7 @@ def styleText(stylableText: str) -> str:
 		
 
 		stylableText = stylableText.replace("[" + customStyle + "}", styledText)
-		
+
 
 	return stylableText
 
@@ -90,7 +91,7 @@ def getText(pageData: list):
 	return "<p>" + styleText(text) + "</p>"
 
 
-def generatePage(file: str, generationPath: str) -> None:
+def generatePage(file: str, generationPath: str, title: str) -> None:
 	
 	inHeader = False
 	rawPost = open(file, "r")
@@ -102,6 +103,9 @@ def generatePage(file: str, generationPath: str) -> None:
 
 	with open("pages/template.html", "r") as template:
 		lines = template.readlines()
+
+		startAt = lines.index("	<!-- Add Title Here -->\n")
+		lines[startAt] = f"<title>{title}</title>\n"
 
 		startAt = lines.index("	<!-- Inject Text Here -->\n")
 
@@ -122,8 +126,18 @@ def generatePage(file: str, generationPath: str) -> None:
 posts = os.listdir("posts")
 
 for post in posts:
+	# Resets posts
+	posts = open("Posts.txt", "w")
+	posts.write("")
+	posts.close()
+
+	# gets path
 	post = "posts/" + post
+
+	# gets meta
 	meta = readMeta(post)
+
+	# adds and generates
 	addPost("Posts.txt", meta.get("Title"), meta.get("Text"), meta.get("fileGenerationSpot"))
-	generatePage(post, meta.get("fileGenerationSpot"))
+	generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
 	

@@ -1,1 +1,1 @@
-Hello World:: The story of making a website and poorly making a markup Language:: generatedPosts/HelloWorld.html
+Hello World:: The story of building my website and the weird tech behind it, and a little about me!:: generatedPosts/HelloWorld.html
