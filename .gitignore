@@ -138,7 +138,7 @@ dmypy.json
 cython_debug/
 
 # Generated posts directory
-generatedPosts/
+generatedPosts/*.html
 
 # Atom feed
 feed.xml
