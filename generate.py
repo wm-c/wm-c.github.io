@@ -186,7 +186,7 @@ def main() -> int:
 		# adds and generates
 		addPost("Posts.txt", meta.get("Title"), meta.get("Text"), meta.get("fileGenerationSpot"))
 		generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
-		writeFeedItem("feed.xml", f"https://wm-c.dev", meta.get("Title"), meta.get("Date"), meta.get("Text"))
+		writeFeedItem("feed.xml", f"https://wm-c.dev/" + meta.get("fileGenerationSpot"), meta.get("Title"), meta.get("Date"), meta.get("Text"))
 	
 	return 0
 	
