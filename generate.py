@@ -117,6 +117,48 @@ def generatePage(file: str, generationPath: str, title: str) -> None:
 			newPost.write(line)
 
 	rawPost.close()
+ 
+def writeAtomHeader(filename: str, baseurl: str, title: str, author: str) -> None:
+    with open(filename, "w") as fp:
+        fp.write(
+			f"""
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US"
+    xmlns="http://www.w3.org/2005/Atom"
+    xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+    <id>{baseurl}/feed.xml</id>
+    <link rel="alternate" type="text/html" href="{baseurl}"/>
+    <link rel="self" type="application/atom+xml" href="{baseurl}/feed.xml"/>
+    <title>{title}</title>
+    <author>
+        <name>{author}</name>
+    </author>
+"""
+		)
+        
+def writeAtomFooter(filename: str) -> None:
+    with open(filename, "a") as fp:
+        fp.write(
+			f"""
+</feed>
+"""
+		)
+        
+def writeFeedItem(filename: str, url: str, title: str, date: str, body: str) -> None:
+    with open(filename, "a") as fp:
+        fp.write(
+			f"""
+<entry>
+	<id>{url}</id>
+	<published>{date}</published>
+	<link rel="alternate" type="text/html" href="{url}"/>
+	<title>{title}</title>
+	<content type="html">
+		{body}
+	</content>
+</entry>
+"""
+		)
 
 def main() -> int:
 
@@ -125,6 +167,9 @@ def main() -> int:
 	if len(posts) == 0:
 		print("No posts found")
 		return 1
+
+	# Write an ATOM feed header
+	writeAtomHeader("feed.xml", "https://wm-c.dev", "WM-C", "William Meathrel")
 
 	for post in posts:
 		# Resets posts
@@ -141,6 +186,7 @@ def main() -> int:
 		# adds and generates
 		addPost("Posts.txt", meta.get("Title"), meta.get("Text"), meta.get("fileGenerationSpot"))
 		generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
+		writeFeedItem("feed.xml", f"https://wm-c.dev", meta.get("Title"), meta.get("Date"), meta.get("Text"))
 	
 	return 0
 	
