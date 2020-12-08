@@ -1,9 +1,9 @@
 import re
 import os
+from typing import List, Optional, Dict
 
 
-
-def readMeta(file: str) -> dict:
+def readMeta(file: str) -> Dict[str,str]:
 	with open(file, "r") as meta:
 		newLine = meta.readline()
 		if(re.search("/\*", newLine) != None):
@@ -28,8 +28,8 @@ def readMeta(file: str) -> dict:
 	return None
 
 
-def addPost(file: str, title: str, description: str, fileGenerationSpot = None) -> None:
-	if(fileGenerationSpot == None):
+def addPost(file: str, title: str, description: str, fileGenerationSpot: Optional[str] = None) -> None:
+	if not fileGenerationSpot:
 		fileGenerationSpot = f"generatedPosts/{title.replace(' ', '')}.html"
 	
 
@@ -54,7 +54,7 @@ def styleText(stylableText: str) -> str:
 	return stylableText
 
 
-def getHeader(pageData: list) -> None:
+def getHeader(pageData: List[str]) -> str:
 	header = ""
 
 	try:
@@ -70,7 +70,7 @@ def getHeader(pageData: list) -> None:
 		header += str(line).replace("\n", "")
 	
 
-def getText(pageData: list):
+def getText(pageData: List[str]) -> str:
 	text = ""
 	end = 0
 
@@ -116,10 +116,7 @@ def generatePage(file: str, generationPath: str, title: str) -> None:
 		for line in lines:
 			newPost.write(line)
 
-
-
 	rawPost.close()
-	return
 
 
 
