@@ -188,6 +188,8 @@ def main() -> int:
 		generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
 		writeFeedItem("feed.xml", f"https://wm-c.dev/" + meta.get("fileGenerationSpot"), meta.get("Title"), meta.get("Date"), meta.get("Text"))
 	
+	writeAtomFooter("feed.xml")
+ 
 	return 0
 	
 if __name__ == "__main__":
