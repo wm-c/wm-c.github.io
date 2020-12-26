@@ -1,0 +1,24 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US"
+    xmlns="http://www.w3.org/2005/Atom"
+    xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">
+    <id>https://wm-c.dev/feed.xml</id>
+    <link rel="alternate" type="text/html" href="https://wm-c.dev"/>
+    <link rel="self" type="application/atom+xml" href="https://wm-c.dev/feed.xml"/>
+    <title>WM-C</title>
+    <author>
+        <name>William Meathrel</name>
+    </author>
+
+<entry>
+	<id>https://wm-c.dev/generatedPosts/HelloWorld.html</id>
+	<published>18/10/2020</published>
+	<link rel="alternate" type="text/html" href="https://wm-c.dev/generatedPosts/HelloWorld.html"/>
+	<title>Hello World</title>
+	<content type="html">
+		The story of building my website and the weird tech behind it, and a little about me!
+	</content>
+</entry>
+
+</feed>
