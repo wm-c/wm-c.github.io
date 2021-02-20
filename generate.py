@@ -121,23 +121,31 @@ def generatePage(file: str, generationPath: str, title: str) -> None:
 	rawPost.close()
 	return
 
+def main() -> int:
 
+	posts = os.listdir("posts")
+ 
+	if len(posts) == 0:
+		print("No posts found")
+		return 1
 
-posts = os.listdir("posts")
+	for post in posts:
+		# Resets posts
+		posts = open("Posts.txt", "w")
+		posts.write("")
+		posts.close()
 
-for post in posts:
-	# Resets posts
-	posts = open("Posts.txt", "w")
-	posts.write("")
-	posts.close()
+		# gets path
+		post = "posts/" + post
 
-	# gets path
-	post = "posts/" + post
+		# gets meta
+		meta = readMeta(post)
 
-	# gets meta
-	meta = readMeta(post)
-
-	# adds and generates
-	addPost("Posts.txt", meta.get("Title"), meta.get("Text"), meta.get("fileGenerationSpot"))
-	generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
+		# adds and generates
+		addPost("Posts.txt", meta.get("Title"), meta.get("Text"), meta.get("fileGenerationSpot"))
+		generatePage(post, meta.get("fileGenerationSpot"), meta.get("Title", "No Title"))
 	
+	return 0
+	
+if __name__ == "__main__":
+	exit(main())
